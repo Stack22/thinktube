@@ -1,0 +1,78 @@
+html  {
+  /*background: url(http://wallpapercave.com/wp/0HHmUnQ.jpg) no-repeat center center fixed;
+  background-size: cover;*/
+}
+
+header  {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  background-color: DeepSkyBlue;
+  z-index: 1;
+}
+
+.mainTitle, .subTitle  {
+  display: block;
+  margin-left: 15%;
+  padding: 0px;
+}
+
+h1  {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.mainContain  {
+  display: block;
+  max-width: 1001px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  padding-top: 100px;
+}
+
+main .row {
+  margin-bottom: 20px;
+}
+
+.thumbnailBox {
+  display: block;
+  position: relative;
+  background-color: DarkSlateGrey;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.thumbnailLabel  {
+  display: block;
+  background-color: white;
+  opacity: 0.7;
+  position: relative;
+  width: 100%;
+  height: 20%;
+  top: 320px;
+  text-align: left;
+  padding: 5px 20px;
+}
+
+.cardText, .cardName  {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-indent: 40px;
+  text-align: left;
+ /* padding: 20px;
+  padding-top: 20px;*/
+}
+
+.cardName {
+  font-weight: 900;
+  font-size: 22px;
+}
+
+.cardText {
+  font-size: 14px;
+}
