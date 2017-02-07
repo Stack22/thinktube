@@ -1,3 +1,8 @@
+var state = {
+  items: [],
+
+}
+
 var YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/search";
 var apiKey = 'AIzaSyC_6i0-lxFb7T4ORGSWNA5LVW46qRWa7b8';
 
@@ -13,28 +18,32 @@ function getDataFromApi(searchTerm, callback) {
   $.get(YOUTUBE_API_URL, query, callback);
 };
 
-function displayOMDBSearchData(data) {
-  var resultElement = '';
-  console.log(data);
-  // if (data.Search) {
-  //   data.Search.forEach(function(item) {
+function displayResults(data) {
+  console.log(data.items);
+  var resultElement = "";
+  data.items.forEach(function(item) {
+   resultElement += '<p>' + item.snippet.title + '</p>';
+  });
+
+  // if (data.items) {
+  //   data.items.forEach(function(item) {
   //    resultElement += '<p>' + item.Title + '</p>';
   //   });
   // }
   // else {
   //   resultElement += '<p>No results</p>';
   // }
-  //
-  // $('.js-search-results').html(resultElement);
+
+  $('.js-search-results').html(resultElement);
 };
 
-function watchSubmit() {
+function watchSubmit(state) {
   $('.js-search-form').submit(function(e) {
     e.preventDefault();
     var searchTerm = $(this).find('.js-search-input').val();
-    getDataFromApi(searchTerm, displayOMDBSearchData);
+    getDataFromApi(searchTerm, displayResults);
     console.log(searchTerm);
   });
 };
 
-$(function(){watchSubmit();});
+$(function(){watchSubmit(state);});
