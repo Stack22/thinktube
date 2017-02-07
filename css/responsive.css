@@ -70,13 +70,16 @@ video {
 @media only screen and (min-width: 719px) {
 
   .mainTitle  {
+    display: inline-block;
     padding-top: 20px;
     font-weight: 900;
     font-size: 30px;
   }
 
+  .search-form {
+    width: 400px;
+  }
   .searchInput {
-    position: relative;
     margin-left: 0;
   }
 
