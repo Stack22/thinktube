@@ -40,9 +40,13 @@ function resetState(state) {
 //  - Query term
 function renderQueryTerm(state, resultsElement) {
   var content = '<em> Searching for: "' + state.queryTerm + '"</em>';
-  $(".js-query-display").html(content);
+  resultsElement.find(".js-query-display").html(content);
 };
+
 //  - Thumbnails
+function renderThumbnails(state, resultsElement) {
+
+}
 //  - Viewer
 
 // Event handlers
@@ -76,5 +80,5 @@ var resultsElement = $(".js-search-results");
 var viewerElement = $(".js-viewer");
 
 $(function() {
-  watchSubmit(state, formElement);
+  watchSubmit(state, formElement, resultsElement);
 });
