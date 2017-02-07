@@ -18,12 +18,16 @@ function getDataFromApi(searchTerm, callback) {
   $.get(YOUTUBE_API_URL, query, callback);
 };
 
-function displayResults(data) {
+function parseResults(data) {
   console.log(data.items);
-  var resultElement = "";
   data.items.forEach(function(item) {
-   resultElement += '<p>' + item.snippet.title + '</p>';
+    state.items.push(item.snippet);
   });
+  console.log(state);
+  // var resultElement = "";
+  // data.items.forEach(function(item) {
+  //  resultElement += '<p>' + item.snippet.title + '</p>';
+  // });
 
   // if (data.items) {
   //   data.items.forEach(function(item) {
@@ -34,14 +38,14 @@ function displayResults(data) {
   //   resultElement += '<p>No results</p>';
   // }
 
-  $('.js-search-results').html(resultElement);
+  // $('.js-search-results').html(resultElement);
 };
 
 function watchSubmit(state) {
   $('.js-search-form').submit(function(e) {
     e.preventDefault();
     var searchTerm = $(this).find('.js-search-input').val();
-    getDataFromApi(searchTerm, displayResults);
+    getDataFromApi(searchTerm, parseResults);
     console.log(searchTerm);
   });
 };
