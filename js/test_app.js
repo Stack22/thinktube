@@ -48,29 +48,24 @@ function renderQueryTerm(state, resultsElement) {
 
 };
 
-// results cards html template
-
-
 //  - Thumbnails
 function renderThumbnails(state, resultsElement) {
   resultsElement.html(" ");
 
   var content = state.items.map(function(item) {
-    var title = item.snippet.title;
-    var thumbnail = item.snippet.thumbnails.medium.url;
-    var template = '<div class="col-4 js-card">' +
+    return '<div class="col-4 js-card">' +
           '<div class="thumbnailBox">' +
-            '<img class="thumbnail js-thumbnail" src=' + thumbnail +
+            '<img class="thumbnail js-thumbnail" src=' + item.snippet.thumbnails.medium.url +
             '></img>' +
-            '<div class="thumbnailLabel">' +
-              '<p><span class="videoName">' + title + '</span><br>' + '</p>' +
+            '<div class="thumbnailLabel" id=' + item.id.videoId + '>' +
+              '<p><span class="videoName">' + item.snippet.title + '</span><br>' + '</p>' +
             '</div>' +
           '</div>' +
         '</div>';
-    return template;
   });
   resultsElement.html(content);
 };
+
 //  - Viewer
 
 // Event handlers
@@ -80,8 +75,14 @@ function watchSubmit(state, formElement, resultsElement) {
     var searchTerm = $(this).find('.js-search-input').val();
     state.queryTerm = searchTerm;
     getDataFromApi(searchTerm, parseResultsToState);
+  });
+};
 
-
+function watchTnailClick(state, resultsElement) {
+  resultsElement.click(function(e) {
+    e.preventDefault();
+    var vidID = $(this).find("attr", "id").val();
+    console.log(vidID);
   });
 };
 /*- handle API call (search input)
@@ -104,4 +105,8 @@ var viewerElement = $(".js-viewer");
 
 $(function() {
   watchSubmit(state, formElement, resultsElement);
+});
+
+$(function() {
+  watchTnailClick(state, resultsElement);
 });
