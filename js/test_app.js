@@ -53,20 +53,24 @@ function renderQueryTerm(state, resultsElement) {
 
 //  - Thumbnails
 function renderThumbnails(state, resultsElement) {
-  resultsElement.find(".js-card").html(" ");
-  var title = state.items[1].snippet.title;
-  var thumbnail = state.items[1].snippet.thumbnails.medium.url;
-  var content = '<div class="col-4 js-card">' +
-        '<div class="thumbnailBox">' +
-          '<img class="thumbnail js-thumbnail" src=' + thumbnail +
-          '></img>' +
-          '<div class="thumbnailLabel">' +
-            '<p><span class="videoName">' + title + '</span><br>' + '</p>' +
+  resultsElement.html(" ");
+
+  var content = state.items.map(function(item) {
+    var title = item.snippet.title;
+    var thumbnail = item.snippet.thumbnails.medium.url;
+    var template = '<div class="col-4 js-card">' +
+          '<div class="thumbnailBox">' +
+            '<img class="thumbnail js-thumbnail" src=' + thumbnail +
+            '></img>' +
+            '<div class="thumbnailLabel">' +
+              '<p><span class="videoName">' + title + '</span><br>' + '</p>' +
+            '</div>' +
           '</div>' +
-        '</div>' +
-      '</div>';
+        '</div>';
+    return template;
+  });
   resultsElement.html(content);
-}
+};
 //  - Viewer
 
 // Event handlers
