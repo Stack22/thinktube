@@ -11,7 +11,7 @@ function getDataFromApi(searchTerm, callback) {
     maxResults: 8,
     key: apiKey
   };
-  $.get(YOUTUBE_API_URL, query, callback);
+  $.getJSON(YOUTUBE_API_URL, query, callback);
 };
 
 // State
@@ -28,7 +28,10 @@ function parseResultsToState(data) {
   data.items.forEach(function(item) {
     state.items.push(item);
   });
+
   console.log(state);
+  renderQueryTerm(state, resultsElement);
+  renderThumbnails(state, resultsElement);
 };
 
 function resetState(state) {
@@ -40,12 +43,17 @@ function resetState(state) {
 //  - Query term
 function renderQueryTerm(state, resultsElement) {
   var content = '<em> Searching for: "' + state.queryTerm + '"</em>';
-  resultsElement.find(".js-query-display").html(content);
+  console.log(state.items[0]);
+  resultsElement.find(".js-query-display").html(state.items[0]);
+
 };
+
+// results cards html template
+
 
 //  - Thumbnails
 function renderThumbnails(state, resultsElement) {
-
+  
 }
 //  - Viewer
 
@@ -56,9 +64,8 @@ function watchSubmit(state, formElement, resultsElement) {
     var searchTerm = $(this).find('.js-search-input').val();
     state.queryTerm = searchTerm;
     getDataFromApi(searchTerm, parseResultsToState);
-    console.log(state);
-    renderQueryTerm(state, resultsElement);
-    // renderThumbnails(state);
+
+
   });
 };
 /*- handle API call (search input)

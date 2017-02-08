@@ -1,6 +1,5 @@
 var state = {
   items: [],
-
 }
 
 var YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/search";
@@ -18,12 +17,17 @@ function getDataFromApi(searchTerm, callback) {
   $.get(YOUTUBE_API_URL, query, callback);
 };
 
-function parseResults(data) {
+function parseResultsToState(data) {
   console.log(data.items);
   data.items.forEach(function(item) {
-    state.items.push(item.snippet);
+    state.items.push(item);
   });
   console.log(state);
+};
+
+// function readTitle(state) {
+//   var title = state.items[0].title;
+// }
   // var resultElement = "";
   // data.items.forEach(function(item) {
   //  resultElement += '<p>' + item.snippet.title + '</p>';
@@ -39,13 +43,13 @@ function parseResults(data) {
   // }
 
   // $('.js-search-results').html(resultElement);
-};
+
 
 function watchSubmit(state) {
   $('.js-search-form').submit(function(e) {
     e.preventDefault();
     var searchTerm = $(this).find('.js-search-input').val();
-    getDataFromApi(searchTerm, parseResults);
+    getDataFromApi(searchTerm, parseResultsToState);
     console.log(searchTerm);
   });
 };
