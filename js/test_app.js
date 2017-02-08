@@ -44,7 +44,7 @@ function resetState(state) {
 function renderQueryTerm(state, resultsElement) {
   var content = '<em> Searching for: "' + state.queryTerm + '"</em>';
   console.log(state.items[0]);
-  resultsElement.find(".js-query-display").html(state.items[0]);
+  resultsElement.find(".js-query-display").html(content);
 
 };
 
@@ -53,7 +53,19 @@ function renderQueryTerm(state, resultsElement) {
 
 //  - Thumbnails
 function renderThumbnails(state, resultsElement) {
-  
+  resultsElement.find(".js-card").html(" ");
+  var title = state.items[1].snippet.title;
+  var thumbnail = state.items[1].snippet.thumbnails.medium.url;
+  var content = '<div class="col-4 js-card">' +
+        '<div class="thumbnailBox">' +
+          '<img class="thumbnail js-thumbnail" src=' + thumbnail +
+          '></img>' +
+          '<div class="thumbnailLabel">' +
+            '<p><span class="videoName">' + title + '</span><br>' + '</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  resultsElement.html(content);
 }
 //  - Viewer
 
