@@ -31,18 +31,16 @@ function simplifyState(state) {
       vidName: item.snippet.title,
       vidURL: "https://youtu.be/" + item.id.videoId,
       vidEmbed: '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + item.id.videoId + '?controls=1" frameborder="0" allowfullscreen></iframe>',
-      vidTnail: item.snippet.thumbnails.default.url,
+      vidTnail: item.snippet.thumbnails.medium.url,
     };
   });
-  console.log(state.vidArray);
 };
 
 function parseResultsToState(data) {
   data.items.forEach(function(item) {
     state.items.push(item);
   });
-
-  // console.log(state);
+  simplifyState(state);
   renderQueryTerm(state, resultsElement);
   renderThumbnails(state, resultsElement);
 };
@@ -63,15 +61,13 @@ function renderQueryTerm(state, resultsElement) {
 
 //  - Thumbnails
 function renderThumbnails(state, resultsElement) {
-  simplifyState(state);
-  resultsElement.html(" ");
-  var content = state.items.map(function(item) {
+  var content = state.vidArray.map(function(item) {
     return '<div class="col-4 js-card">' +
           '<div class="thumbnailBox">' +
-            '<img class="thumbnail js-thumbnail" src=' + item.snippet.thumbnails.medium.url +
+            '<img class="thumbnail js-thumbnail" id="' + item.ytID + '" src=' + item.vidTnail +
             '></img>' +
-            '<div class="thumbnailLabel" id=' + item.id.videoId + '>' +
-              '<p><span class="videoName">' + item.snippet.title + '</span><br>' + '</p>' +
+            '<div class="thumbnailLabel"' +
+              '<p><span class="videoName">' + item.vidName + '</span><br>' + '</p>' +
             '</div>' +
           '</div>' +
         '</div>';
@@ -79,8 +75,7 @@ function renderThumbnails(state, resultsElement) {
   resultsElement.html(content);
 };
 
-function renderViewer(content, viewerElement) {
-  console.log("I heard the click");
+function renderViewer(content, viewerElement, resultsElement, thumbnailElement) {
   viewerElement.removeClass(".hidden");
   viewerElement.html(content);
 };
@@ -96,6 +91,12 @@ function watchSubmit(state, formElement, resultsElement) {
   });
 };
 
+function watchForVideo(state, resultsElement, thumbnailElement, viewerElement) {
+  resultsElement.on('click', thumbnailElement, function(e) {
+    var thisThumbnail = $(this).find('.js-thumbnail').attr('id');
+    console.log("I heard the click on " + thisThumbnail);
+  });
+};
 /*- handle API call (search input)
   - handle data --> State
   - handle render Thumbnails
@@ -113,8 +114,9 @@ var formElement = $(".js-search-form");
 var submitButton = $("#searchButton");
 var resultsElement = $(".js-search-results");
 var viewerElement = $(".js-viewer");
-var thumnailElement = $(".js-thumbnail");
+var thumbnailElement = $(".js-thumbnail");
 
 $(function() {
   watchSubmit(state, formElement, resultsElement);
+  watchForVideo(state, resultsElement, thumbnailElement)
 });

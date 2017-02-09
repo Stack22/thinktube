@@ -96,6 +96,7 @@ video {
   .col-4 {
     width: 33.3%;
     height: 296px;
+    margin-bottom: 20px;
   }
 
   /* 6 columns */
