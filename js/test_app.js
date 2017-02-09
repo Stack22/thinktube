@@ -78,11 +78,11 @@ function watchSubmit(state, formElement, resultsElement) {
   });
 };
 
-function watchTnailClick(state, resultsElement) {
+function watchTnailClick(state, resultsElement, viewerElement) {
   resultsElement.click(function(e) {
     e.preventDefault();
-    var vidID = $(this).find("attr", "id").val();
-    console.log(vidID);
+    content = '<iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" frameborder="0" allowfullscreen></iframe>'
+    viewerElement.removeClass(".hidden").html(content);
   });
 };
 /*- handle API call (search input)
@@ -108,5 +108,5 @@ $(function() {
 });
 
 $(function() {
-  watchTnailClick(state, resultsElement);
+  watchTnailClick(state, resultsElement, viewerElement);
 });

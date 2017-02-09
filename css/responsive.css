@@ -63,6 +63,8 @@
 }
 
 .query-display {
+  z-index: 1;
+  position: fixed;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -77,21 +79,26 @@ video {
 
   .mainTitle  {
     display: inline-block;
+    position: relative;
     padding-top: 20px;
     font-weight: 900;
     font-size: 30px;
   }
 
   .query-display {
+    z-index: 1;
+    position: fixed;
     width: 50%;
     height: 30px;
     margin-left: auto;
     margin-right: auto;
   }
   .search-form {
-    width: 400px;
+    width: 100%;
   }
   .searchInput {
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: 0;
   }
 
@@ -107,6 +114,7 @@ video {
   /* 4 columns */
   .col-4 {
     width: 33.3%;
+    min-height: 296px;
   }
 
   /* 6 columns */
