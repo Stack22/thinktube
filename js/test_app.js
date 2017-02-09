@@ -45,7 +45,6 @@ function renderQueryTerm(state, resultsElement) {
   var content = '<em> Searching for: "' + state.queryTerm + '"</em>';
   console.log(state.items[0]);
   resultsElement.find(".js-query-display").html(content);
-
 };
 
 //  - Thumbnails
@@ -66,6 +65,11 @@ function renderThumbnails(state, resultsElement) {
   resultsElement.html(content);
 };
 
+function renderViewer(content, viewerElement) {
+  console.log("I heard the click");
+  viewerElement.removeClass(".hidden");
+  viewerElement.html(content);
+};
 //  - Viewer
 
 // Event handlers
@@ -78,14 +82,6 @@ function watchSubmit(state, formElement, resultsElement) {
   });
 };
 
-function watchTnailClick(state, resultsElement, viewerElement) {
-  resultsElement.click(function(e) {
-    e.preventDefault();
-    content = '<iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" frameborder="0" allowfullscreen></iframe>'
-    viewerElement.removeClass(".hidden");
-    .html(content);
-  });
-};
 /*- handle API call (search input)
   - handle data --> State
   - handle render Thumbnails
@@ -103,11 +99,8 @@ var formElement = $(".js-search-form");
 var submitButton = $("#searchButton");
 var resultsElement = $(".js-search-results");
 var viewerElement = $(".js-viewer");
+var thumnailElement = $(".js-thumbnail");
 
 $(function() {
   watchSubmit(state, formElement, resultsElement);
-});
-
-$(function() {
-  watchTnailClick(state, resultsElement, viewerElement);
 });

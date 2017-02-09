@@ -8,38 +8,30 @@
 
   		<link rel="stylesheet" type="text/css" href="css/main.css">
   		<link rel="stylesheet" type="text/css" href="css/responsive.css">
-			<script src="https://use.fontawesome.com/b3a306a4f8.js"></script>
+			<!-- <script src="https://use.fontawesome.com/b3a306a4f8.js"></script> -->
 	</head>
-	<header class="topBanner">
-		<div>
-			<form class="search-form js-search-form">
-				<h1 class="mainTitle">ThinkTube</h1>
-
-				<input type="text" name="searchInput" class="searchInput js-search-input" placeholder="e.g., higher order functions" required></input>
-				<input type="submit" id="searchButton" value="Find Videos"></input>
-			</form>
-		</div>
-	</header>
 	<body>
-		<main>
-		  <div class="mainContain">
-				<div class="js-query-display query-display">
-				</div>
-				<div class="js-search-results">
-				</div>
-    	</div>
-			<div class="js-viewer viewer hdden">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4?controls=1" frameborder="0" allowfullscreen></iframe>
-				<!-- <video src="" autoplay poster="posterimage.jpg">
-
-				</video> -->
+		<header class="topBanner">
+			<div>
+				<form class="search-form js-search-form">
+					<h1 class="mainTitle">ThinkTube</h1>
+					<input type="text" name="searchInput" class="searchInput js-search-input" placeholder="e.g., higher order functions" required></input>
+					<input type="submit" id="searchButton" value="Find Videos"></input>
+				</form>
 			</div>
-		</main>
-		<script
-  src="https://code.jquery.com/jquery-3.1.1.js"
-  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous"></script>
-		<script type="text/javascript" src="js/test_app.js"></script>
-		<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
+		</header>
+
+			<main>
+				<div class="js-search-results">
+					</div>
+				<div class="js-viewer viewer hidden">
+					</div>
+			</main>
+			<script
+	  src="https://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous"></script>
+			<script type="text/javascript" src="js/test_app.js"></script>
+			<!-- <script type="text/javascript" src="https://apis.google.com/js/client.js"></script> -->
 	</body>
 </html>
