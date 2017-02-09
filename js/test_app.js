@@ -17,40 +17,54 @@ function getDataFromApi(searchTerm, callback) {
 // State
 var state = {
   items: [],
+  vidArray: [],
   queryTerm: ""
 }
 
 // Read State
 
-
 // Update State
+function simplifyState(state) {
+  state.vidArray = state.items.map(function(item) {
+    return {
+      ytID: item.id.videoId,
+      vidName: item.snippet.title,
+      vidURL: "https://youtu.be/" + item.id.videoId,
+      vidEmbed: '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + item.id.videoId + '?controls=1" frameborder="0" allowfullscreen></iframe>',
+      vidTnail: item.snippet.thumbnails.default.url,
+    };
+  });
+  console.log(state.vidArray);
+};
+
 function parseResultsToState(data) {
   data.items.forEach(function(item) {
     state.items.push(item);
   });
 
-  console.log(state);
+  // console.log(state);
   renderQueryTerm(state, resultsElement);
   renderThumbnails(state, resultsElement);
 };
 
 function resetState(state) {
-  state.items = [];
-}
-
+    state.items = [],
+    state.vidArray = [],
+    state.queryTerm = ''
+};
 
 // Render State
 //  - Query term
 function renderQueryTerm(state, resultsElement) {
   var content = '<em> Searching for: "' + state.queryTerm + '"</em>';
-  console.log(state.items[0]);
+  // console.log(state.items[0]);
   resultsElement.find(".js-query-display").html(content);
 };
 
 //  - Thumbnails
 function renderThumbnails(state, resultsElement) {
+  simplifyState(state);
   resultsElement.html(" ");
-
   var content = state.items.map(function(item) {
     return '<div class="col-4 js-card">' +
           '<div class="thumbnailBox">' +
