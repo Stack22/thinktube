@@ -82,7 +82,8 @@ function watchTnailClick(state, resultsElement, viewerElement) {
   resultsElement.click(function(e) {
     e.preventDefault();
     content = '<iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" frameborder="0" allowfullscreen></iframe>'
-    viewerElement.removeClass(".hidden").html(content);
+    viewerElement.removeClass(".hidden");
+    .html(content);
   });
 };
 /*- handle API call (search input)
